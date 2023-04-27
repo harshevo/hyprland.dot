@@ -7,7 +7,7 @@ monitor=,preferred,auto,auto
 # Both monitors here are at 1440 and 165Hz
 # DP-1 is on the left and  eDP-1 is on the right
 #monitor=DP-1,2560x1440@165,0x0,1
-#monitor=eDP-1,2560x1440@165,2560x0,1.25
+monitor=eDP-1,1920x1080@60,0x0,1.0
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -43,12 +43,12 @@ input {
 general {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-    gaps_in = 5
-    gaps_out = 10
+    gaps_in = 2
+    gaps_out = 5
     border_size = 2
-    #col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-    col.active_border=rgb(cdd6f4)
+    col.active_border = rgba(c6a0f6ee) rgba(ed8796ee) rgba(eed49fee) rgba(a6da95ee) 45deg
     col.inactive_border = rgba(595959aa)
+
 
     layout = dwindle
 }
@@ -60,31 +60,32 @@ misc {
 decoration {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-    rounding = 5
+    rounding = 0
     blur = yes
-    blur_size = 7
-    blur_passes = 4
+    blur_size = 5
+    blur_passes = 2
     blur_new_optimizations = on
-
+    #active_opacity = 0.9 
     blurls = lockscreen
 
-    drop_shadow = yes
+    drop_shadow = true
     shadow_range = 4
     shadow_render_power = 3
     col.shadow = rgba(1a1a1aee)
 }
 
 animations {
-    enabled = yes
-
-    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-    bezier = myBezier, 0.10, 0.9, 0.1, 1.05
-
-    animation = windows, 1, 7, myBezier, slide
-    animation = windowsOut, 1, 7, myBezier, slide
+    enabled = true
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+    bezier = rotate,0,0,1,1
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
     animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
     animation = fade, 1, 7, default
     animation = workspaces, 1, 6, default
+   #animation = borderangle, 1, 20, rotate, loop    # borderangle - for animating the border's gradient angle - styles: once (default), loop
+
 }
 
 dwindle {
@@ -127,7 +128,7 @@ windowrulev2 = opacity 0.8 0.8,class:^(kitty)$
 windowrulev2 = animation popin,class:^(kitty)$,title:^(update-sys)$
 windowrulev2 = animation popin,class:^(thunar)$
 windowrulev2 = opacity 0.8 0.8,class:^(thunar)$
-windowrulev2 = opacity 0.8 0.8,class:^(VSCodium)$
+#windowrulev2 = opacity 0.5 0.5,class:^(code)$
 windowrulev2 = animation popin,class:^(chromium)$
 windowrulev2 = move cursor -3% -105%,class:^(wofi)$
 windowrulev2 = noanim,class:^(wofi)$
@@ -147,8 +148,11 @@ bind = $mainMod, A, togglefloating, # Allow a window to float
 bind = $mainMod, R, exec, wofi # Show the graphical app launcher
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, togglesplit, # dwindle
-bind = $mainMod, S, exec, grim -t jpeg -q 10 -g "$(slurp)" - | swappy -f - # take a screenshot
-bind = $mainMod, V, exec, code
+bind = $mainMod, C, exec, /opt/google/chrome/chrome
+bind = $mainMod, F, fullscreen
+bind - $mainMod, V, exec, code,
+bind = $mainMod SHIFT, S , exec, grim -t jpeg -q 10 -g "$(slurp)" - | swappy -f - # take a screenshot
+
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
 bind = $mainMod, right, movefocus, r
