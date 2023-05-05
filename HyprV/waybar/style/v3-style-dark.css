@@ -10,7 +10,7 @@
 window#waybar {
     background: #000000;
     color: #cdd6f4;
-    
+    opacity:0.9;    
 }
 
 tooltip {
