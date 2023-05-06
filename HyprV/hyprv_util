@@ -24,9 +24,9 @@ set_current_background() {
     
     #set the current background
     if [[ $THEMEIS == "dark.css" ]]; then
-        swww img ~/wallpaper/000.jpg
+        swww img ~/wallpaper/when.jpg
     else
-        swww img ~/wallpaper/000.jpg
+        swww img ~/wallpaper/when.jpg
     fi
 }
 
@@ -60,10 +60,10 @@ switch_version() {
     ln -sf ~/.config/HyprV/wofi/style/$VERTO'style'$SWITCHTO.css ~/.config/wofi/style.css
 
     #set the background
-    swww img ~/wallpaper/000.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+    swww img ~/wallpaper/when.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
 
     #update the sddm image
-    cp -f ~/wallpaper/000.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
+    cp -f ~/wallpaper/when.jpg /usr/share/sddm/themes/sdt/wallpaper.jpg
 
     #restart the waybr
     pkill waybar
